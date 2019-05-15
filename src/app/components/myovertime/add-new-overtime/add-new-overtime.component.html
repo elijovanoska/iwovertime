@@ -1,0 +1,112 @@
+<!-- testing of two way databinding with template driven forms -->
+<div class="container pt-3" style="margin-bottom:20px">
+    <div class="row justify-content-sm-center">
+        <div class="col-sm-10 col-md-6">
+            <div class="card border-info">
+                <div class="card-header">Add overtime</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form [formGroup]="overtimeForm" (ngSubmit)="onSubmit()">
+                                <div class="form-group">
+                                    <label>First Name</label>
+                                    <input type="text" formControlName="firstname" class="form-control" id="firstname" />
+                                </div>
+                                <div *ngIf="firstname.invalid && (firstname.dirty || firstname.touched)" class="alert alert-danger">
+
+                                    <div *ngIf="firstname.errors.required">
+                                        First name is required.
+                                    </div>
+                                    <div *ngIf="firstname.errors.forbiddenName">
+                                        Name cannot be Bob or Anna.
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label>Last Name</label>
+                                    <input type="text" formControlName="lastname" class="form-control" />
+
+                                </div>
+                                <div *ngIf="lastname.invalid && (lastname.dirty || lastname.touched)" class="alert alert-danger">
+
+                                    <div *ngIf="lastname.errors.required">
+                                        Last name is required.
+                                    </div>
+                                    <div *ngIf="lastname.errors.forbiddenCharacters">
+                                        @!# are forbidden characters.
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Choose project</label>
+                                    <select formControlName="projectName" class="form-control" >
+                                        <option *ngFor="let p of projectList"  [value]="p">{{p.name}}</option>
+                                    </select>
+                                </div>
+                                <div *ngIf="projectName.invalid && (projectName.dirty || projectName.touched)" class="alert alert-danger">
+
+                                    <div *ngIf="projectName.errors.required">
+                                        Project is required.
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Hours from</label>
+                                    <input type="time" formControlName="timefrom" class="form-control" />
+
+                                </div>
+                                <div *ngIf="timefrom.invalid && (timefrom.dirty || timefrom.touched)" class="alert alert-danger">
+
+                                    <div *ngIf="timefrom.errors.required">
+                                        Field is required.
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Hours to</label>
+                                    <input type="time" formControlName="timeto" class="form-control" />
+
+                                </div>
+                                <div *ngIf="timeto.invalid && (timeto.dirty || timeto.touched)" class="alert alert-danger">
+
+                                    <div *ngIf="timeto.errors.required">
+                                        Field is required.
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Date</label>
+                                    <input type="date" formControlName="date" class="form-control" />
+
+                                </div>
+                                <div *ngIf="date.invalid && (date.dirty || date.touched)" class="alert alert-danger">
+
+                                    <div *ngIf="date.errors.required">
+                                        Date is required.
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Comment</label>
+                                    <textarea formControlName="comment" class="form-control"  row="5" ></textarea>  
+
+                                </div>
+                                <div *ngIf="comment.invalid && (comment.dirty || comment.touched)" class="alert alert-danger" >
+
+                                    <div *ngIf="comment.errors.required">
+                                        Comment is required.
+                                    </div>
+                                </div>
+
+                                <div class="form-group d-flex flex-row" style="width:100%">
+                                    <span class="justify-content-start" style="width:50%"><button class="btn btn-primary" [disabled]="!overtimeForm.valid" type="submit">Save</button></span>
+                                    
+                                    <span class="justify-content-end" style="width:50%"><button class="btn btn-primary" (click)="goBackToList()" type="button">Cancel</button></span>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

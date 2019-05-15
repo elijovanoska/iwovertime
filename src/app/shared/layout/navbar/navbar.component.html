@@ -1,0 +1,22 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" routerLink="/">
+    <img width="200" alt="Angular Logo" src="../../../../assets/images/logo_interworks.png">
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link" routerLinkActive="active" routerLink="/profile"  *ngIf="authService.isAuthenticated()">My profile<span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link" routerLinkActive="active" routerLink="/myovertime"  *ngIf="authService.isAuthenticated()">My overtime<span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link" routerLinkActive="active" routerLink="/teamovertime"    *ngIf="authService.isAuthenticated()">Team overtime<span class="sr-only">(current)</span></a>
+    </div>
+  </div>
+  <div class="d-flex justify-content-end" id="authLinks">
+      <div class="navbar-nav">
+          <a class="nav-item nav-link" routerLinkActive="active" *ngIf="!authService.isAuthenticated()" routerLink="/register">Register<span class="sr-only">(current)</span></a>
+          <a class="nav-item nav-link" routerLinkActive="active" *ngIf="!authService.isAuthenticated()" routerLink="/login">Login<span class="sr-only">(current)</span></a>
+          <a class="nav-item nav-link" routerLinkActive="active" routerLink="#" *ngIf="authService.isAuthenticated()" (click)="onLogout()">Logout<span class="sr-only">(current)</span></a>
+        </div>
+  </div>
+</nav>

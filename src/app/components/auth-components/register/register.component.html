@@ -1,0 +1,51 @@
+<div class="container pt-3" style="margin-bottom:20px">
+  <div class="row justify-content-sm-center">
+    <div class="col-sm-10 col-md-6">
+      <div class="card border-info">
+        <div class="card-header">Register</div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-12">
+              <form (ngSubmit)="onRegister(f)" #f="ngForm">
+                <div class="form-group">
+                  <label for="email">Email address</label>
+                  <input type="email" id="email" name="email" email ngModel #email="ngModel" class="form-control" required>
+                </div>
+                <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+
+                  <div *ngIf="email.errors.required">
+                    Email is required.
+                  </div>
+                  <div *ngIf="email.errors.email">
+                    Email is not valid.
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="password">Password</label>
+                  <input type="password" id="password" name="password" ngModel minlength="6" #password="ngModel" class="form-control" required>
+                </div>
+                <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
+
+                  <div *ngIf="password.errors.required">
+                    Password is required.
+                  </div>
+                  <div *ngIf="password.errors.minlength">
+                    Password must be at least 6 characters long.
+                  </div>
+                </div>
+                <button class="btn btn-primary" type="submit" [disabled]="!f.valid">Sign In</button>
+              </form>
+
+
+              <div class="redirectToLogin">
+                <span>Already have an account?
+                  <a class="redirect" routerLink="/login"> Login</a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,45 @@
+
+  <!-- testing of two way databinding with template driven forms -->
+<div class="container pt-3" style="margin-bottom:20px">
+    <div class="row justify-content-sm-center">
+        <div class="col-sm-10 col-md-6">
+            <div class="card border-info">
+                <div class="card-header">Add overtime</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div style="display: block">
+                                <canvas mdbChart
+                                    [chartType]="chartType"
+                                    [datasets]="chartDatasets"
+                                    [labels]="chartLabels"
+                                    [colors]="chartColors"
+                                    [options]="chartOptions"
+                                    [legend]="true"
+                                    (chartHover)="chartHovered($event)"
+                                    (chartClick)="chartClicked($event)">
+                                </canvas>
+                              </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div style="display: block">
+                                <canvas mdbChart
+                                    [chartType]="chartTypePie"
+                                    [datasets]="chartDatasetsPie"
+                                    [labels]="chartLabelsPie"
+                                    [colors]="chartColorsPie"
+                                    [options]="chartOptionsPie"
+                                    [legend]="true"
+                                    (chartHover)="chartHoveredPie($event)"
+                                    (chartClick)="chartClickedPie($event)">
+                                </canvas>
+                              </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

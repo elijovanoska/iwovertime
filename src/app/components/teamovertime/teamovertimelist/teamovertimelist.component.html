@@ -1,0 +1,124 @@
+
+<div class="container pt-3" style="margin-bottom:20px;">
+    <div class="row justify-content-sm-center">
+      <div class="col-sm-10">
+        <div class="card border-info">
+          <div class="card-header">My overtime list</div>
+          <div class="card-body">
+            <div class="row">
+                <div class="col-md-12" >
+                   <!--  <ul>
+                        <li *ngFor="let item of itemRows">
+                         Firstname: {{ item.firstname }}
+                        </li>
+                      </ul>      -->  
+                      <div>
+                        
+                        <mat-form-field class="example-full-width">
+                          <label>Filter table</label>
+                          <input matInput  (keyup)="doFilter($event.target.value)">
+                        </mat-form-field>
+                      </div>
+                     
+                    
+                      <div class="example-container mat-elevation-z8 " #TABLE>
+                        <table mat-table #table id="myTable" matSort  [dataSource]="dataSource" >
+                          <!-- Checkbox Column -->
+                                       
+                                     <!--        <ng-container matColumnDef="select">
+                                                 <th mat-header-cell *matHeaderCellDef>
+                                                   <mat-checkbox (change)="$event ? masterToggle() : null"
+                                                                 [checked]="selection.hasValue() && isAllSelected()"
+                                                                 [indeterminate]="selection.hasValue() && !isAllSelected()">
+                                                   </mat-checkbox>
+                                                 </th>
+                                                 <td mat-cell *matCellDef="let row">
+                                                   <mat-checkbox (click)="$event.stopPropagation()"
+                                                                 (change)="$event ? selection.toggle(row) : null"
+                                                                 [checked]="selection.isSelected(row)">
+                                                   </mat-checkbox>
+                                                 </td>
+                                               </ng-container> -->
+                                             <!-- Position Column -->
+                                             <ng-container matColumnDef="firstname">
+                                               <th mat-header-cell *matHeaderCellDef mat-sort-header>First name</th>
+                                               <td mat-cell *matCellDef="let element" date-t="s"> {{element.firstname}} </td>
+                                              <td mat-footer-cell *matFooterCellDef> Total time for the month</td>
+                                               <!-- <md-total-cell *mdTotalCellDef> Total time for the month</md-total-cell> -->
+                                             </ng-container>
+                                             <ng-container matColumnDef="lastname">
+                                               <th mat-header-cell *matHeaderCellDef  mat-sort-header>Last name</th>
+                                               <td mat-cell *matCellDef="let element" date-t="s"> {{element.lastname}} </td>
+                                              <td mat-footer-cell *matFooterCellDef></td>
+                                               <!-- <md-total-cell *mdTotalCellDef> Total time for the month</md-total-cell> -->
+                                             </ng-container>
+                                             <ng-container matColumnDef="timefrom">
+                                               <th mat-header-cell *matHeaderCellDef >From</th>
+                                               <td mat-cell *matCellDef="let element" date-t="s"> {{element.hoursFrom}} </td>
+                                              <td mat-footer-cell *matFooterCellDef></td>
+                                               <!-- <md-total-cell *mdTotalCellDef> Total time for the month</md-total-cell> -->
+                                             </ng-container>
+                                           
+                                             <!-- Name Column -->
+                                             <ng-container matColumnDef="timeto">
+                                               <th mat-header-cell *matHeaderCellDef>To </th>
+                                               <td mat-cell *matCellDef="let element" date-t="s"> {{element.hoursTo}} </td>
+                                               <td mat-footer-cell *matFooterCellDef></td>
+                                              <!-- <md-total-cell *mdTotalCellDef>  </md-total-cell> -->
+                                             </ng-container>
+                                             <!-- Name Column -->
+                                             <ng-container matColumnDef="totaltime">
+                                               <th mat-header-cell *matHeaderCellDef  mat-sort-header> Time total in minutes</th>
+                                               <td mat-cell *matCellDef="let element" date-t="n"> {{element.totalTime}} </td>
+                                               <td mat-footer-cell *matFooterCellDef> {{getTotalTime()}} </td>  -->
+                                              <!-- <md-total-cell *mdTotalCellDef>  {{itemRows.sumBy('totalTime')}} </md-total-cell> -->
+                                             </ng-container>
+                                           
+                                             <!-- Weight Column -->
+                                             <ng-container matColumnDef="date">
+                                               <th mat-header-cell *matHeaderCellDef  mat-sort-header > Date </th>
+                                               <td mat-cell *matCellDef="let element" date-t="d"> {{element.date | date:'MM/dd/yyyy'}} </td> 
+                                               <td mat-footer-cell *matFooterCellDef></td>
+                                            <!--   <md-total-cell *mdTotalCellDef>  </md-total-cell> -->
+                                             </ng-container>
+                                           
+                                             <!-- Symbol Column -->
+                                             <ng-container matColumnDef="comment">
+                                               <th mat-header-cell *matHeaderCellDef> Comment </th>
+                                               <td mat-cell *matCellDef="let element" date-t="s"> {{element.comment}} </td>
+                                               <td mat-footer-cell *matFooterCellDef></td>
+                                              <!-- <md-total-cell *mdTotalCellDef>  </md-total-cell> -->
+                                             </ng-container>
+                   
+                                             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                             <tr mat-row *matRowDef="let row; columns: displayedColumns;let i = index"
+                                                 (click)="selection.toggle(row)">
+                                            </tr>
+                                            <tr mat-footer-row *matFooterRowDef="displayedColumns" style="background-color: #6ff38d; font-weight: 500"></tr>
+                                           <!--  <md-total-row *mdTotalRowDef="displayedColumns"></md-total-row> -->
+                                           </table>
+                                           <mat-paginator *ngIf="itemRows"  [pageSizeOptions]="[2, 5, 10]" [length]="resultsLength"  showFirstLastButtons></mat-paginator>
+                      </div>                   
+            </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                  <div class="form-group d-flex flex-row" style="width:100%">
+                    
+                      <span class="justify-content-end" style="width:100%">
+                          <a class="btn btn-primary" routerLink="charts">View charts<span class="sr-only">(current)</span></a>
+                      </span>
+                      <span class="justify-content-end" style="width:100%">
+                          <a class="btn btn-primary" (click)="convertToExcel()">Save as excel<span class="sr-only">(current)</span></a>
+                      </span>
+                      <span class="justify-content-end" style="width:100%">
+                          <a class="btn btn-primary" (click)="convertToPDF()">Save as pdf<span class="sr-only">(current)</span></a>
+                      </span>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
